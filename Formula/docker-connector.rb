@@ -6,8 +6,6 @@ class DockerConnector < Formula
   version "1.0"
   def install
     bin.install "docker-connector"
-    (buildpath/"options.cnf").write `docker network ls --filter driver=bridge --format "{{.ID}}" | xargs docker network inspect --format "route {{range .IPAM.Config}}{{.Subnet}}{{end}}"`
-    etc.install "options.conf" => "docker-connector.conf"
   end
   plist_options :manual => "docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
   def plist
