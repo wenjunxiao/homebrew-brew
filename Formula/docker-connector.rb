@@ -6,6 +6,14 @@ class DockerConnector < Formula
   version "1.0"
   def install
     bin.install "docker-connector"
+    (buildpath/"docker-connector.conf").write <<~EOS
+      # addr 192.168.251.1/24
+      # mtu 1400
+      # host 127.0.0.1
+      # port 2511
+      # route 172.17.0.0/16
+    EOS
+    etc.install "docker-connector.conf"
   end
   plist_options :startup => "true", :manual => "sudo docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
   def plist
