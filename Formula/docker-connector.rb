@@ -23,7 +23,7 @@ class DockerConnector < Formula
           <string>#{plist_name}</string>
           <key>ProgramArguments</key>
           <array>
-            <string>#{opt_bin}/redis-server</string>
+            <string>#{opt_bin}/docker-connector</string>
             <string>-config</string>
             <string>#{etc}/docker-connector.conf</string>
           </array>
