@@ -7,7 +7,7 @@ class DockerConnector < Formula
   def install
     bin.install "docker-connector"
   end
-  plist_options :manual => "docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
+  plist_options :startup => "true", :manual => "sudo docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
   def plist
     <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
