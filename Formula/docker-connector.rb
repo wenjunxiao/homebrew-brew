@@ -15,8 +15,8 @@ class DockerConnector < Formula
     EOS
     etc.install "docker-connector.conf"
   end
-  def post_install
-    ohai <<~EOS
+  def caveats
+    <<~EOS
     For the first time, you can add all the bridge networks of docker to the routing table by the following command:
       docker network ls --filter driver=bridge --format "{{.ID}}" | xargs docker network inspect --format "route {{range .IPAM.Config}}{{.Subnet}}{{end}}" >> #{HOMEBREW_PREFIX}/etc/docker-connector.conf
     Or add the route of network you want to access to following config file at any time:
