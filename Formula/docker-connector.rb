@@ -1,9 +1,9 @@
 class DockerConnector < Formula
   desc "Provides the ability for the mac computer to directly access the docker container"
   homepage "https://github.com/wenjunxiao/mac-docker-connector"
-  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v1.0/docker-connector-mac.tar.gz"
-  sha256 "a373cf08193fe7f71e8e0a335e1ef1f8062c12b5e4d0c4edb50709d5366bf7f7"
-  version "1.0"
+  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v2.0/docker-connector-darwin.tar.gz"
+  sha256 "53dee9ad2b0c56ff766375014c74ccdc2485eea55563277c0dac18b386207590"
+  version "2.0"
   def install
     bin.install "docker-connector"
     (buildpath/"docker-connector.conf").write <<~EOS
@@ -24,6 +24,9 @@ class DockerConnector < Formula
     Route format is `route subnet`, such as:
       route 172.17.0.0/16
     The route modification will take effect immediately without restarting the service.
+    You can also expose you docker container to other by follow settings in #{HOMEBREW_PREFIX}/etc/docker-connector.conf:
+      expose 0.0.0.0:2512
+      route 172.17.0.0/16 expose
     EOS
   end
   plist_options :startup => "true", :manual => "sudo docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"

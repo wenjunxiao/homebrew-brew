@@ -9,6 +9,7 @@
 ```bash
 $ brew tap wenjunxiao/brew
 $ brew install docker-connector
+$ brew install docker-accessor
 ```
 
   Or you can directly install through the following command, when there is a name conflict or not.
