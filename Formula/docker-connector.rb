@@ -1,9 +1,9 @@
 class DockerConnector < Formula
   desc "Provides the ability for the mac computer to directly access the docker container"
   homepage "https://github.com/wenjunxiao/mac-docker-connector"
-  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v2.0/docker-connector-darwin.tar.gz"
-  sha256 "53dee9ad2b0c56ff766375014c74ccdc2485eea55563277c0dac18b386207590"
-  version "2.0"
+  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v2.1/docker-connector-darwin.tar.gz"
+  sha256 "7f04898a03e0badc08e96c4689b98c30b533eb425b88b983718fec1fdd2e8a4b"
+  version "2.1"
   def install
     bin.install "docker-connector"
     (buildpath/"docker-connector.conf").write <<~EOS
