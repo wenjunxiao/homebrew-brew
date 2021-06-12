@@ -1,9 +1,9 @@
 class DockerConnector < Formula
   desc "Provides the ability for the mac computer to directly access the docker container"
   homepage "https://github.com/wenjunxiao/mac-docker-connector"
-  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v2.1/docker-connector-darwin.tar.gz"
-  sha256 "7f04898a03e0badc08e96c4689b98c30b533eb425b88b983718fec1fdd2e8a4b"
-  version "2.1"
+  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v2.2/docker-connector-darwin.tar.gz"
+  sha256 "bc49402baa60cdd36b726768417b846e8127b717b712334c13b1b786b7a61e75"
+  version "2.2"
   def install
     bin.install "docker-connector"
     (buildpath/"docker-connector.conf").write <<~EOS
@@ -12,6 +12,8 @@ class DockerConnector < Formula
       # host 127.0.0.1
       # port 2511
       # route 172.17.0.0/16
+      # route 172.18.0.0/16
+      # iptables 172.17.0.0+172.18.0.0
     EOS
     etc.install "docker-connector.conf"
   end
@@ -27,6 +29,8 @@ class DockerConnector < Formula
     You can also expose you docker container to other by follow settings in #{HOMEBREW_PREFIX}/etc/docker-connector.conf:
       expose 0.0.0.0:2512
       route 172.17.0.0/16 expose
+    Let the two subnets access each other through iptables:
+      iptables 172.17.0.0+172.18.0.0
     EOS
   end
   plist_options :startup => "true", :manual => "sudo docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
