@@ -33,7 +33,7 @@ class DockerConnector < Formula
       iptables 172.17.0.0+172.18.0.0
     EOS
   end
-  plist_options :startup => "true", :manual => "sudo docker-connector #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
+  plist_options :startup => "true", :manual => "sudo docker-connector -config #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
   def plist
     <<~EOS
       <?xml version="1.0" encoding="UTF-8"?>
