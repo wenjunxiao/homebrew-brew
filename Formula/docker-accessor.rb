@@ -1,9 +1,9 @@
 class DockerAccessor < Formula
   desc "Provides the ability to access access the docker container of mac computer"
   homepage "https://github.com/wenjunxiao/mac-docker-connector/tree/master/accessor"
-  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v3.0/docker-accessor-darwin.tar.gz"
-  sha256 "8a5326d08552104c9a75888fc831353bfc830f5b8d92ec6eb7d9174881446824"
-  version "3.0"
+  url "https://github.com/wenjunxiao/mac-docker-connector/releases/download/v3.1/docker-accessor-darwin.tar.gz"
+  sha256 "9e58ef987a05d9ef82850261ea3fa5253714b0191c72cff5682c7e9ed448a2a3"
+  version "3.1"
   def install
     bin.install "docker-accessor"
   end
