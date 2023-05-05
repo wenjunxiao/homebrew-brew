@@ -35,36 +35,14 @@ class DockerConnector < Formula
       iptables 172.17.0.0+172.18.0.0
     EOS
   end
-  plist_options :startup => "true", :manual => "sudo docker-connector -config #{HOMEBREW_PREFIX}/etc/docker-connector.conf"
-  def plist
-    <<~EOS
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-      <plist version="1.0">
-        <dict>
-          <key>KeepAlive</key>
-          <dict>
-            <key>SuccessfulExit</key>
-            <false/>
-          </dict>
-          <key>Label</key>
-          <string>#{plist_name}</string>
-          <key>ProgramArguments</key>
-          <array>
-            <string>#{opt_bin}/docker-connector</string>
-            <string>-config</string>
-            <string>#{etc}/docker-connector.conf</string>
-          </array>
-          <key>RunAtLoad</key>
-          <true/>
-          <key>WorkingDirectory</key>
-          <string>#{var}</string>
-          <key>StandardErrorPath</key>
-          <string>#{var}/log/docker-connector.log</string>
-          <key>StandardOutPath</key>
-          <string>#{var}/log/docker-connector.log</string>
-        </dict>
-      </plist>
-    EOS
+
+  service do
+    run ["sudo", opt_bin/"docker-connector", "-config", "etc/docker-connector.conf"]
+    working_dir HOMEBREW_PREFIX
+    keep_alive true
+    log_path var/"log/docker-connector.log"
+    error_log_path var/"log/docker-connector.log"
+
   end
+
 end
