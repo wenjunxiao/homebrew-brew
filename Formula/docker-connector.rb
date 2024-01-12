@@ -37,8 +37,8 @@ class DockerConnector < Formula
   end
 
   service do
-    run ["sudo", opt_bin/"docker-connector", "-config", "etc/docker-connector.conf"]
-    working_dir HOMEBREW_PREFIX
+    run ["sudo", opt_bin/"docker-connector", "-config", HOMEBREW_PREFIX/"etc/docker-connector.conf"]
+    working_dir var
     keep_alive true
     log_path var/"log/docker-connector.log"
     error_log_path var/"log/docker-connector.log"
